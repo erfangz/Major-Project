@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using Cinemachine;
 
 public class ProtoPlayerControls : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class ProtoPlayerControls : MonoBehaviour
     [BoxGroup("Camera References")]
     [Tooltip("Cinemachine LookAt Target for in-combat camera movement")]
     public Transform LookAtPos_2;
+    CinemachineFreeLook freeLook;
+
     #endregion
 
     #region Functions
@@ -43,7 +46,7 @@ public class ProtoPlayerControls : MonoBehaviour
         #endregion
 
         #region Camera
-
+        freeLook.LookAt = LookAtPos_2;
         #endregion
     }
     #endregion
