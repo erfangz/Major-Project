@@ -17,16 +17,25 @@ public class ProtoPlayerControls : MonoBehaviour
     public Transform Orientation;
 
     public Rigidbody PlayerRb;
+
+    [BoxGroup("Camera References")]
+    [Tooltip("Camera Sensitivity")]
+    public float RotationSpeed;
+    [BoxGroup("Camera References")]
+    [Tooltip("Cinemachine LookAt Target for out-of-combat camera movement")]
+    public Transform LookAtPos_1;    
+    [BoxGroup("Camera References")]
+    [Tooltip("Cinemachine LookAt Target for in-combat camera movement")]
+    public Transform LookAtPos_2;
     #endregion
 
     #region Functions
-    // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
         #region Movement
