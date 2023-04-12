@@ -28,8 +28,17 @@ public class ProtoPlayerControls : MonoBehaviour
     [BoxGroup("Camera References")]
     [Tooltip("Cinemachine LookAt Target for in-combat camera movement")]
     public Transform LookAtPos_2;
-    CinemachineFreeLook freeLook;
 
+    /// <summary>
+    /// Switches between different modes of Camera movement, protoversion via button input to switch modes on demand
+    /// </summary>
+    public enum CameraState
+    {
+        TRAVERSE,
+        COMBAT
+    }
+
+    public CameraState CamMode;
     #endregion
 
     #region Functions
@@ -42,11 +51,29 @@ public class ProtoPlayerControls : MonoBehaviour
     void Update()
     {
         #region Movement
+        // movement axis
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        // rotate orientation
+        Vector3 viewDir = Player.position - new Vector3(transform.position.x, Player.position.y, transform.position.z);
+        Orientation.forward = viewDir.normalized;
+
+        // rotate player model
 
         #endregion
 
         #region Camera
-        freeLook.LookAt = LookAtPos_2;
+        // switch between camera modes
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            CamMode = CameraState.TRAVERSE;
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            CamMode = CameraState.COMBAT;
+
+        // camera behaviour in traverse mode
+
+        // camera behaviour in combat mode
         #endregion
     }
     #endregion
