@@ -60,7 +60,20 @@ public class ProtoPlayerControls : MonoBehaviour
         Orientation.forward = viewDir.normalized;
 
         // rotate player model
+        // movement behaviour in traverse mode
+        if(CamMode == CameraState.TRAVERSE)
+        {
+            Vector3 inputDir = Orientation.forward * verticalInput + Orientation.right * horizontalInput;
 
+            if (inputDir != Vector3.zero)
+                PlayerGameObject.forward = Vector3.Slerp(PlayerGameObject.forward, inputDir.normalized, Time.deltaTime * RotationSpeed);
+        }
+
+        // movement behaviour in combat mode
+        //if(CamMode == CameraState.COMBAT)
+        //{
+
+        //}
         #endregion
 
         #region Camera
@@ -72,6 +85,7 @@ public class ProtoPlayerControls : MonoBehaviour
             CamMode = CameraState.COMBAT;
 
         // camera behaviour in traverse mode
+
 
         // camera behaviour in combat mode
         #endregion
