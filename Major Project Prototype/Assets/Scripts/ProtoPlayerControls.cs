@@ -19,12 +19,29 @@ public class ProtoPlayerControls : MonoBehaviour
 
     public Rigidbody PlayerRb;
 
+    public GameObject GroundCheck;
+
+    public LayerMask Ground;
+
+    private Vector3 velocity;
+
+    [BoxGroup("Player Variables")]
+    [Tooltip("Player movement speed")]
+    public float MoveSpeed;
+    [BoxGroup("Player Variables")]
+    [Tooltip("The strength of the players jump")]
+    public float JumpForce;
+
+    [BoxGroup("Player Variables")]
+    [SerializeField]
+    private int jumpCount;
+
     [BoxGroup("Camera References")]
     [Tooltip("Camera Sensitivity")]
     public float RotationSpeed;
     [BoxGroup("Camera References")]
     [Tooltip("Cinemachine LookAt Target for out-of-combat camera movement")]
-    public Transform LookAtPos_1;    
+    public Transform LookAtPos_1;
     [BoxGroup("Camera References")]
     [Tooltip("Cinemachine LookAt Target for in-combat camera movement")]
     public Transform LookAtPos_2;
@@ -51,18 +68,39 @@ public class ProtoPlayerControls : MonoBehaviour
     void Update()
     {
         #region Movement
-        // movement axis
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        // walking
+        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
+        Vector3 moveDirection = transform.TransformDirection(direction);
+
+        PlayerRb.MovePosition(transform.position + moveDirection * MoveSpeed * Time.deltaTime);
+
+        // jumping
+        // ground check
+        bool grounded = Physics.CheckSphere(GroundCheck.transform.position, 0.1f, Ground);
+
+        if (grounded && velocity.y < 0)
+            velocity.y = -2f;
+
+        // if grounded, capable of jumping
+        if(grounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayerRb.AddForce(Vector3.up * JumpForce);
+        }
+        #endregion
+
+        #region Camera
         // rotate orientation
         Vector3 viewDir = Player.position - new Vector3(transform.position.x, Player.position.y, transform.position.z);
         Orientation.forward = viewDir.normalized;
 
         // rotate player model
         // movement behaviour in traverse mode
-        if(CamMode == CameraState.TRAVERSE)
+        if (CamMode == CameraState.TRAVERSE)
         {
+            // movement axis
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
             Vector3 inputDir = Orientation.forward * verticalInput + Orientation.right * horizontalInput;
 
             if (inputDir != Vector3.zero)
@@ -74,9 +112,7 @@ public class ProtoPlayerControls : MonoBehaviour
         //{
 
         //}
-        #endregion
 
-        #region Camera
         // switch between camera modes
         if (Input.GetKeyDown(KeyCode.Alpha1))
             CamMode = CameraState.TRAVERSE;
