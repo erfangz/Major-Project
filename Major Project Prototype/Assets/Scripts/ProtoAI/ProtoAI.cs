@@ -7,7 +7,7 @@ public class ProtoAI : Tree
 
     public static float Speed = 2f;
     public static float FOV_Range = 6f;
-    public static float Atk_Range = 1f;
+    public static float Atk_Range = 3f;
 
     protected override BT_Node SetUpTree()
     {
