@@ -14,11 +14,12 @@ public class Task_Attack : BT_Node
 
     public Task_Attack(Transform transform)
     {
-
     }
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Attack");
+
         Transform target = (Transform)GetData("target");
 
         if(target != _lastTarget)

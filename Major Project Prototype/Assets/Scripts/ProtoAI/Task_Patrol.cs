@@ -23,6 +23,8 @@ public class Task_Patrol : BT_Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Patrolling");
+
         if (waiting)
         {
             waitCounter += Time.deltaTime;

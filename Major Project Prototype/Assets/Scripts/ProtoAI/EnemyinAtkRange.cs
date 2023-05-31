@@ -16,23 +16,27 @@ public class EnemyinAtkRange : BT_Node
 
     public override NodeState Evaluate()
     {
+
         object t = GetData("target");
 
         if (t == null)
         {
             state = NodeState.FAILURE;
+            Debug.Log("In Attack range" + state.ToString());
             return state;
         }
 
         Transform target = (Transform)t;
 
-        if(Vector3.Distance(_transform.position, target.position) <= ProtoAI.Atk_Range)
+        if (Vector3.Distance(_transform.position, target.position) <= ProtoAI.Atk_Range)
         {
             state = NodeState.SUCCESS;
+            Debug.Log("In Attack range" + state.ToString());
             return state;
         }
 
         state = NodeState.FAILURE;
+        Debug.Log("In Attack range" + state.ToString());
         return state;
     }
 }

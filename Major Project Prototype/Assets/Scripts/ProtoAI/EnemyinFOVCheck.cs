@@ -14,6 +14,8 @@ public class EnemyinFOVCheck : BT_Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Seeing Enemy");
+
         object t = GetData("target");
 
         if (t == null)

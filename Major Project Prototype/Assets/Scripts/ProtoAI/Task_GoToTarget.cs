@@ -14,6 +14,8 @@ public class Task_GoToTarget : BT_Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Going to enemy");
+
         Transform target = (Transform)GetData("target");
 
         if(Vector3.Distance(_transform.position, target.position) > 0.01f)
