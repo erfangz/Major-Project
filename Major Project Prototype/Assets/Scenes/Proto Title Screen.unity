@@ -932,7 +932,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 440457279}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1981201738}
+        m_TargetAssemblyTypeName: ExitGame, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &440457279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1640,7 +1652,7 @@ RectTransform:
   m_GameObject: {fileID: 822754204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.4, y: -0.4, z: -0.4}
+  m_LocalScale: {x: -0.71, y: -0.71, z: -0.71}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1748882183}
@@ -3424,7 +3436,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1815522057}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1981201738}
+        m_TargetAssemblyTypeName: ExitGame, Assembly-CSharp
+        m_MethodName: DontQuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1815522057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3511,6 +3535,7 @@ GameObject:
   - component: {fileID: 1981201735}
   - component: {fileID: 1981201737}
   - component: {fileID: 1981201736}
+  - component: {fileID: 1981201738}
   m_Layer: 5
   m_Name: QuitGamePrompt
   m_TagString: Untagged
@@ -3552,7 +3577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7882353}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3577,6 +3602,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981201734}
   m_CullTransparentMesh: 1
+--- !u!114 &1981201738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981201734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0efb626774431a0469b3c28fdbafaf31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quitGamePopUp: {fileID: 1981201734}
 --- !u!1 &2035564527
 GameObject:
   m_ObjectHideFlags: 0
