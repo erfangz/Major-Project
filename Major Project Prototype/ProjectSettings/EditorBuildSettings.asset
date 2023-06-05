@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Proto Title Screen.unity
+    guid: c03840383efe33c47849a0fb0da17320
   m_configObjects: {}
