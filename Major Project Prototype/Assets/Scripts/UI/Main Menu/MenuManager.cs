@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using NaughtyAttributes;
 
+/// <summary>
+/// Manages Main Menu Functions and Interactions + Sub Menus accessible from Main Menu
+/// </summary>
 public class MenuManager : MonoBehaviour
 {
     #region Objects
@@ -22,8 +22,6 @@ public class MenuManager : MonoBehaviour
     private GameObject optionsScreen;
     [SerializeField]
     private GameObject quitGamePopUp;
-
-
     #endregion
 
     private void Start()
