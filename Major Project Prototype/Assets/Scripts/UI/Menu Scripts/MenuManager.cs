@@ -14,10 +14,10 @@ public class MenuManager : MonoBehaviour
     private GameObject returnButton;
 
     [Header("Main Menu Sub Menus")]
-    [SerializeField]
-    private GameObject newGameScreen;
-    [SerializeField]
-    private GameObject continueGameScreen;
+    //[SerializeField]
+    //private GameObject newGameScreen;
+    //[SerializeField]
+    //private GameObject continueGameScreen;
     [SerializeField]
     private GameObject optionsScreen;
     [SerializeField]
@@ -32,21 +32,21 @@ public class MenuManager : MonoBehaviour
     #region Button Methods
     // functions open the respective menu while disabling the main menu
 
-    [Button]
-    public void NewGame()
-    {
-        mainMenu.SetActive(false);
-        newGameScreen.SetActive(true);
-        returnButton.SetActive(true);
-    }
+    //[Button]
+    //public void NewGame()
+    //{
+    //    mainMenu.SetActive(false);
+    //    newGameScreen.SetActive(true);
+    //    returnButton.SetActive(true);
+    //}
 
-    [Button]
-    public void ContinueGame()
-    {
-        mainMenu.SetActive(false);
-        continueGameScreen.SetActive(true);
-        returnButton.SetActive(true);
-    }
+    //[Button]
+    //public void ContinueGame()
+    //{
+    //    mainMenu.SetActive(false);
+    //    continueGameScreen.SetActive(true);
+    //    returnButton.SetActive(true);
+    //}
 
     [Button]
     public void Options()
@@ -69,8 +69,8 @@ public class MenuManager : MonoBehaviour
     public void Return()
     {
         // disable all other menus
-        continueGameScreen.SetActive(false);
-        newGameScreen.SetActive(false);
+        //continueGameScreen.SetActive(false);
+        //newGameScreen.SetActive(false);
         optionsScreen.SetActive(false);
         quitGamePopUp.SetActive(false);
 
