@@ -197,6 +197,8 @@ MonoBehaviour:
   PlayerRb: {fileID: 3094698470019778996}
   RotationSpeed: 10
   CombatLookAt: {fileID: 0}
+  Cam1: {fileID: 0}
+  Cam2: {fileID: 0}
   CamMode: 0
 --- !u!114 &3094698470019778994
 MonoBehaviour:

@@ -20,10 +20,15 @@ public class PlayerCamMove : MonoBehaviour
 
     [BoxGroup("Camera References")]
     [Tooltip("Camera Sensitivity")]
-    public float RotationSpeed;
+    public float RotationSpeed; 
     [BoxGroup("Camera References")]
-    [Label("Combat Cam")]
     public Transform CombatLookAt;
+    [BoxGroup("Camera References")]
+    [Label("Traversal Camera")]
+    public GameObject Cam1;
+    [BoxGroup("Camera References")]
+    [Label("Combat Camera")]
+    public GameObject Cam2;
 
     public CameraMode CamMode;
     #endregion
@@ -47,7 +52,17 @@ public class PlayerCamMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // switch camera modes via input
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            CamSwitch(CameraMode.TRAVERSE);  
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            CamSwitch(CameraMode.COMBAT);
 
+        // camera behaviour
+        if (CamMode == CameraMode.TRAVERSE)
+            TraversalBehaviour();
+        if (CamMode == CameraMode.COMBAT)
+            CombatBehaviour();
     }
 
     /// <summary>
@@ -80,6 +95,26 @@ public class PlayerCamMove : MonoBehaviour
         Orientation.forward = combatViewDirection.normalized;
 
         PlayerGameObject.forward = combatViewDirection.normalized;
+    }
+
+    /// <summary>
+    /// Controls the mode of the Camera
+    /// </summary>
+    /// <param name="mode"></param>
+    public void CamSwitch(CameraMode mode)
+    {
+        Cam1.SetActive(false);
+        Cam2.SetActive(false);
+
+        // enable traversal camera
+        if (mode == CameraMode.TRAVERSE)
+            Cam1.SetActive(true);
+     
+        // enable combat camera
+        if(mode == CameraMode.COMBAT)
+            Cam2.SetActive(true);
+
+        CamMode = mode;
     }
     #endregion
 }
