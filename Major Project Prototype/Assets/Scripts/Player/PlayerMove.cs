@@ -5,6 +5,7 @@ using NaughtyAttributes;
 
 public class PlayerMove : MonoBehaviour
 {
+    #region Objects
     public Rigidbody PlayerRb;
 
     public GameObject GroundCheck;
@@ -19,13 +20,9 @@ public class PlayerMove : MonoBehaviour
     [BoxGroup("Player Variables")]
     [Tooltip("The strength of the players jump")]
     public float JumpForce;
+    #endregion
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    #region Methods
     // Update is called once per frame
     void Update()
     {
@@ -49,4 +46,5 @@ public class PlayerMove : MonoBehaviour
             PlayerRb.AddForce(Vector3.up * JumpForce);
         }
     }
+    #endregion
 }
