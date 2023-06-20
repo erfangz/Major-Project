@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
+/// <summary>
+/// The behaviour of the Player Camera
+/// </summary>
 public class PlayerCamMove : MonoBehaviour
 {
     #region Objects
