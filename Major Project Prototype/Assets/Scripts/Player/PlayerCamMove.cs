@@ -43,14 +43,12 @@ public class PlayerCamMove : MonoBehaviour
     #endregion
 
     #region Methods
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // switch camera modes via input

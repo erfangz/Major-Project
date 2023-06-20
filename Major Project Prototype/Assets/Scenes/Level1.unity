@@ -758,7 +758,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.014677541, y: 0.00000003447858, z: 5.0611537e-10, w: 0.9998923}
+  m_LocalRotation: {x: -0.014677541, y: 0.00000003452646, z: 5.0681814e-10, w: 0.9998923}
   m_LocalPosition: {x: 1.72, y: 2.243, z: -3.2000003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1772,7 +1772,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750123356}
-  m_LocalRotation: {x: -0.014677536, y: 0.000000017242867, z: 2.5311003e-10, w: 0.9998923}
+  m_LocalRotation: {x: -0.014677538, y: 0.000000017338417, z: 2.545127e-10, w: 0.9998923}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1850,7 +1850,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778110981}
-  m_LocalRotation: {x: 0.06317098, y: 0.000000007435701, z: -4.706605e-10, w: 0.99800277}
+  m_LocalRotation: {x: 0.063170984, y: 3.099755e-15, z: -1.6951321e-16, w: 0.99800277}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1928,7 +1928,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806587185}
-  m_LocalRotation: {x: 0.12040072, y: 0.000000022227155, z: -0.0000000026957763, w: 0.9927254}
+  m_LocalRotation: {x: 0.12040074, y: -0.000000020640663, z: 0.0000000025033622, w: 0.9927254}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2031,22 +2031,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3094698470019778997, guid: 107e7fdbb9cb7c34f8afce23503ba539, type: 3}
-      propertyPath: Cam1
-      value: 
-      objectReference: {fileID: 615854260}
-    - target: {fileID: 3094698470019778997, guid: 107e7fdbb9cb7c34f8afce23503ba539, type: 3}
-      propertyPath: Cam2
-      value: 
-      objectReference: {fileID: 1671527799}
-    - target: {fileID: 3094698470019778997, guid: 107e7fdbb9cb7c34f8afce23503ba539, type: 3}
-      propertyPath: CombatLookAt
-      value: 
-      objectReference: {fileID: 3094698470211985575}
-    - target: {fileID: 3094698470019778997, guid: 107e7fdbb9cb7c34f8afce23503ba539, type: 3}
-      propertyPath: PlayerGameObject
-      value: 
-      objectReference: {fileID: 194472208}
     - target: {fileID: 3094698470019778998, guid: 107e7fdbb9cb7c34f8afce23503ba539, type: 3}
       propertyPath: m_RootOrder
       value: 2

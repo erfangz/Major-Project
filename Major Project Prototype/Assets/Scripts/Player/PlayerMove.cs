@@ -31,7 +31,6 @@ public class PlayerMove : MonoBehaviour
     #endregion
 
     #region Methods
-    // Update is called once per frame
     void Update()
     {
         Move();
