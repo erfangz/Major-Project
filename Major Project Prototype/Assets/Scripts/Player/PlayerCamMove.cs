@@ -18,8 +18,6 @@ public class PlayerCamMove : MonoBehaviour
     [BoxGroup("Player References")]
     [Tooltip("Relative Direction of Player to Camera and World Space during movement")]
     public Transform Orientation;
-    [BoxGroup("Player References")]
-    public Rigidbody PlayerRb;
 
     [BoxGroup("Camera References")]
     [Tooltip("Camera Sensitivity")]

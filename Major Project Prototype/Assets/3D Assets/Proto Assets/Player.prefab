@@ -104,7 +104,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3094698470019778998}
   - component: {fileID: 3094698470019778996}
-  - component: {fileID: 3094698470019778997}
   - component: {fileID: 3094698470019778994}
   m_Layer: 0
   m_Name: Player
@@ -147,27 +146,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &3094698470019778997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3094698470019778985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c52de6fbfdc3d5479603d38774d4d93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 3094698470019778998}
-  PlayerGameObject: {fileID: 3094698471139110115}
-  Orientation: {fileID: 3094698469922860668}
-  PlayerRb: {fileID: 3094698470019778996}
-  RotationSpeed: 10
-  CombatLookAt: {fileID: 0}
-  Cam1: {fileID: 0}
-  Cam2: {fileID: 0}
-  CamMode: 0
 --- !u!114 &3094698470019778994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerRb: {fileID: 3094698470019778996}
   GroundCheck: {fileID: 3094698469248281080}
+  Orientation: {fileID: 3094698469922860668}
   Ground:
     serializedVersion: 2
     m_Bits: 8

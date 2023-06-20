@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject GroundCheck;
 
+    public Transform Orientation;
+
     public LayerMask Ground;
 
     private Vector3 velocity;
@@ -43,9 +45,9 @@ public class PlayerMove : MonoBehaviour
     {
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        Vector3 moveDirection = transform.TransformDirection(direction);
+        Vector3 moveDirection = Orientation.TransformDirection(direction);
 
-        PlayerRb.MovePosition(transform.position + moveDirection * MoveSpeed * Time.deltaTime);
+        PlayerRb.MovePosition(Orientation.position + moveDirection * MoveSpeed * Time.deltaTime);
     }
 
     /// <summary>
