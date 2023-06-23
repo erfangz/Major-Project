@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 579790774}
   - component: {fileID: 579790773}
   - component: {fileID: 579790772}
-  - component: {fileID: 579790771}
+  - component: {fileID: 579790776}
   m_Layer: 0
   m_Name: AI1
   m_TagString: Untagged
@@ -305,25 +305,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &579790771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579790770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad491897cd44e9f458e1d8af9468ad0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Waypoints:
-  - {fileID: 1040755810}
-  - {fileID: 1164381907}
-  - {fileID: 2033464707}
-  - {fileID: 1407384577}
-  - {fileID: 1914775218}
-  - {fileID: 158769982}
 --- !u!136 &579790772
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -403,6 +384,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &579790776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579790770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 1
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 0}
+  mBehaviorSource:
+    behaviorName: ProtoAI
+    behaviorDescription: Prototype AI behaviour
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(174,18.8000031)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-33,147.8)","Comment":"Select
+        between a Seeking Behavior and an Idle Behaviour"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-190.090912,113.042389)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"FOV_Check","NodeData":{"Offset":"(-115.757584,141.515167)","Comment":"Checks
+        if a Target is within this Gameobjects Field of View"},"ID":3,"Name":"FOV  
+        Check","Instant":true,"SharedTransformTarget":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Target","IsShared":true},"StringTargetTag":"Enemy","SingleFOV":45},{"Type":"Patrol","NodeData":{"Offset":"(103.393921,152.436462)"},"ID":4,"Name":"Patrol","Instant":true,"SingleMoveSpeed":0,"Transform[]WayPoints":[]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Target","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"MoveSpeed","IsShared":true,"SinglemValue":0}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.6
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!1 &1040755809
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,9 +777,9 @@ GameObject:
   - component: {fileID: 2051949919}
   - component: {fileID: 2051949918}
   - component: {fileID: 2051949917}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: enemy dummy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
