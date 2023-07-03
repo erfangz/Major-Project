@@ -11,8 +11,8 @@ public class WallRunBehaviour : MonoBehaviour
     #region Objects
     public enum MoveState
     {
-        ONGROUND,
-        ONWALL
+        NormalMovement,
+        WallMovement
     }
     public MoveState State;
 
@@ -20,8 +20,6 @@ public class WallRunBehaviour : MonoBehaviour
     public LayerMask Ground;
     [BoxGroup("Object Layers")]
     public LayerMask Wall;
-
-    public GameObject GroundCheck;
 
     [BoxGroup("Object Checks")]
     public bool Grounded;
@@ -31,6 +29,8 @@ public class WallRunBehaviour : MonoBehaviour
     public bool OnRightSideWall;
 
     public bool WallRunning;
+    public bool HorizontalWallRun;
+    public bool VerticalWallRun;
 
     [BoxGroup("Object Checks")]
     public float DistanceToWall;
@@ -42,6 +42,9 @@ public class WallRunBehaviour : MonoBehaviour
     public Transform Orientation;
     [BoxGroup("References")]
     public Rigidbody Rb;
+    [BoxGroup("References")]
+    public PlayerMove PlayerMove;
+    Vector3 wallNormal;
 
     float verticalInput;
     float horizontalInput;
@@ -50,31 +53,76 @@ public class WallRunBehaviour : MonoBehaviour
     #region Methods
     void FixedUpdate()
     {
+
+        if (WallRunning)
+        {
+            OnWallMove();
+
+            // Cancel Wallrun via Input of LeftCtrl
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+                StopWallRun();
+        }
+    }
+
+    void Update()
+    {
+        #region Input Checks
+        // Get Inputs
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+        #endregion
+
         #region Checks
         // ground check
-        Grounded = Physics.CheckSphere(GroundCheck.transform.position, 0.1f, Ground);
+        Grounded = PlayerMove.Grounded;
 
         // wall check
         OnLeftSideWall = Physics.Raycast(transform.position, -Orientation.right, out wall_L, DistanceToWall, Wall);
         OnRightSideWall = Physics.Raycast(transform.position, Orientation.right, out wall_R, DistanceToWall, Wall);
         #endregion
+
+        SwitchStates();
     }
 
-    void Update()
+    /// <summary>
+    /// Initiates Wallrun logic
+    /// </summary>
+    void BeginnWallRun()
     {
+        //Rb.useGravity = false;
 
+        WallRunning = true;
+
+        Rb.velocity = new Vector3(Rb.velocity.x, 0f, Rb.velocity.z);
+    }
+
+    /// <summary>
+    /// Terminates Wallrun Logic
+    /// </summary>
+    void StopWallRun()
+    {
+        WallRunning = false;
+
+        State = MoveState.NormalMovement;
+
+        //Rb.useGravity = true;
     }
 
     /// <summary>
     /// Controls Player Move State
     /// </summary>
-    void SwitchStates(MoveState state)
+    void SwitchStates()
     {
         // Wall Running State
-        WallRunning = true;
-        state = MoveState.ONWALL;
+        if (OnLeftSideWall || OnRightSideWall && verticalInput > 0 || horizontalInput > 0 && !Grounded)
+        {
+            if (!WallRunning)
+                BeginnWallRun();
+        }
 
         // Normal Movement State
+        if (!WallRunning)
+            State = MoveState.NormalMovement;
     }
 
     #region Movement
@@ -83,12 +131,25 @@ public class WallRunBehaviour : MonoBehaviour
     /// </summary>
     void OnWallMove()
     {
+        // determine wall normal
+        if (OnRightSideWall)
+            wallNormal = wall_R.normal;
 
+        if (OnLeftSideWall)
+            wallNormal = wall_L.normal;
 
-        if (OnLeftSideWall || OnRightSideWall && verticalInput > 0 && !Grounded)
-        {
-            State = MoveState.ONWALL;
-        }
+        // determine relative forward direction to wall
+        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
+
+        if ((Orientation.forward - wallForward).magnitude > (Orientation.forward - -wallForward).magnitude)
+            wallForward = -wallForward;
+
+        // Forward movement on wall
+        Rb.AddForce(wallForward * PlayerMove.MoveSpeed, ForceMode.Force);
+
+        // Push player towards wall
+        if (!(OnLeftSideWall && horizontalInput > 0) && !(OnRightSideWall && horizontalInput < 0))
+            Rb.AddForce(-wallNormal * 100, ForceMode.Force);
     }
 
     /// <summary>
