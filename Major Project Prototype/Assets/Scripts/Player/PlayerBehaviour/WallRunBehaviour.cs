@@ -53,7 +53,6 @@ public class WallRunBehaviour : MonoBehaviour
     #region Methods
     void FixedUpdate()
     {
-
         if (WallRunning)
         {
             OnWallMove();
@@ -89,7 +88,7 @@ public class WallRunBehaviour : MonoBehaviour
     /// </summary>
     void BeginnWallRun()
     {
-        //Rb.useGravity = false;
+        Rb.useGravity = false;
 
         WallRunning = true;
 
@@ -105,7 +104,7 @@ public class WallRunBehaviour : MonoBehaviour
 
         State = MoveState.NormalMovement;
 
-        //Rb.useGravity = true;
+        Rb.useGravity = true;
     }
 
     /// <summary>
@@ -119,6 +118,9 @@ public class WallRunBehaviour : MonoBehaviour
             if (!WallRunning)
                 BeginnWallRun();
         }
+
+        if (!OnLeftSideWall || !OnRightSideWall)
+            Rb.useGravity = true;
 
         // Normal Movement State
         if (!WallRunning)
@@ -134,8 +136,7 @@ public class WallRunBehaviour : MonoBehaviour
         // determine wall normal
         if (OnRightSideWall)
             wallNormal = wall_R.normal;
-
-        if (OnLeftSideWall)
+        else
             wallNormal = wall_L.normal;
 
         // determine relative forward direction to wall

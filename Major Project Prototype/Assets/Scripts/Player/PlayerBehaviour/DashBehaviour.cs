@@ -56,7 +56,7 @@ public class DashBehaviour : MonoBehaviour
     void DashControl()
     {
         // Dash Input
-        if (Input.GetKeyDown(KeyCode.LeftControl) && CanDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && CanDash)
         {
             Dash();
             CanDash = false;
