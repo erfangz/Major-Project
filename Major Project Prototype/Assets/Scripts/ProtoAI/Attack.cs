@@ -27,12 +27,14 @@ public class Attack : Action
 
     [SerializeField]
     bool canShoot;
+    [SerializeField]
     bool inAttackRange;
     #endregion
 
     #region References
     public SharedTransform Target;
     public GameObject Bullet;
+    public Transform BulletSpawn;
     #endregion
 
     #region Methods
@@ -49,11 +51,12 @@ public class Attack : Action
         {
             canShoot = true;
             Shoot();
+            return TaskStatus.Success;
         }
 
         Reload();
 
-        return TaskStatus.Running;
+        return TaskStatus.Failure;
     }
 
     /// <summary>
