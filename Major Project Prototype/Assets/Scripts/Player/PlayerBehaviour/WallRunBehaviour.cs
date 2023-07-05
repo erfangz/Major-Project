@@ -48,6 +48,8 @@ public class WallRunBehaviour : MonoBehaviour
 
     float verticalInput;
     float horizontalInput;
+
+    public KeyCode DetachFromWallKey = KeyCode.LeftControl;
     #endregion
 
     #region Methods
@@ -58,9 +60,12 @@ public class WallRunBehaviour : MonoBehaviour
             OnWallMove();
 
             // Cancel Wallrun via Input of LeftCtrl
-            if (Input.GetKeyDown(KeyCode.LeftControl))
+            if (Input.GetKeyDown(DetachFromWallKey))
                 StopWallRun();
         }
+
+        if (!OnLeftSideWall || !OnRightSideWall)
+            WallRunning = false;
     }
 
     void Update()
@@ -78,6 +83,9 @@ public class WallRunBehaviour : MonoBehaviour
         // wall check
         OnLeftSideWall = Physics.Raycast(transform.position, -Orientation.right, out wall_L, DistanceToWall, Wall);
         OnRightSideWall = Physics.Raycast(transform.position, Orientation.right, out wall_R, DistanceToWall, Wall);
+
+        Debug.DrawRay(transform.position, -Orientation.right, Color.red);
+        Debug.DrawRay(transform.position, Orientation.right, Color.red);
         #endregion
 
         SwitchStates();
@@ -88,11 +96,13 @@ public class WallRunBehaviour : MonoBehaviour
     /// </summary>
     void BeginnWallRun()
     {
-        Rb.useGravity = false;
-
+        Rb.velocity = new Vector3(Rb.velocity.x, 0f, Rb.velocity.z);
         WallRunning = true;
 
-        Rb.velocity = new Vector3(Rb.velocity.x, 0f, Rb.velocity.z);
+        State = MoveState.WallMovement;
+
+        Rb.useGravity = false;
+
     }
 
     /// <summary>
@@ -101,8 +111,6 @@ public class WallRunBehaviour : MonoBehaviour
     void StopWallRun()
     {
         WallRunning = false;
-
-        State = MoveState.NormalMovement;
 
         Rb.useGravity = true;
     }
@@ -113,18 +121,23 @@ public class WallRunBehaviour : MonoBehaviour
     void SwitchStates()
     {
         // Wall Running State
-        if (OnLeftSideWall || OnRightSideWall && verticalInput > 0 || horizontalInput > 0 && !Grounded)
+        if (OnLeftSideWall || OnRightSideWall && verticalInput > 0 && !Grounded)
         {
             if (!WallRunning)
+            {
                 BeginnWallRun();
+                Debug.Log("Gravity off");
+            }
         }
 
-        if (!OnLeftSideWall || !OnRightSideWall)
-            Rb.useGravity = true;
+
 
         // Normal Movement State
         if (!WallRunning)
+        {
+            StopWallRun();
             State = MoveState.NormalMovement;
+        }
     }
 
     #region Movement
@@ -133,6 +146,8 @@ public class WallRunBehaviour : MonoBehaviour
     /// </summary>
     void OnWallMove()
     {
+        Debug.Log("Wall run");
+
         // determine wall normal
         if (OnRightSideWall)
             wallNormal = wall_R.normal;
@@ -146,7 +161,8 @@ public class WallRunBehaviour : MonoBehaviour
             wallForward = -wallForward;
 
         // Forward movement on wall
-        Rb.AddForce(wallForward * PlayerMove.MoveSpeed, ForceMode.Force);
+        //Rb.velocity = new Vector3(wallForward.x * PlayerMove.MoveSpeed, Rb.velocity.y, wallForward.z * PlayerMove.MoveSpeed);
+        Rb.AddForce(wallForward * (PlayerMove.MoveSpeed * 10f), ForceMode.Force);
 
         // Push player towards wall
         if (!(OnLeftSideWall && horizontalInput > 0) && !(OnRightSideWall && horizontalInput < 0))

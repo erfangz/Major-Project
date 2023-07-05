@@ -167,10 +167,12 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 8
-  MoveSpeed: 8
-  JumpForce: 500
+  velocity: {x: 0, y: 0, z: 0}
+  MoveSpeed: 10
+  JumpForce: 5
   JumpCount: 2
   Grounded: 0
+  JumpKey: 32
 --- !u!114 &1759593171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,10 +198,11 @@ MonoBehaviour:
   WallRunning: 0
   HorizontalWallRun: 0
   VerticalWallRun: 0
-  DistanceToWall: 0.5
+  DistanceToWall: 0.75
   Orientation: {fileID: 3094698469922860668}
   Rb: {fileID: 3094698470019778996}
   PlayerMove: {fileID: 3094698470019778994}
+  DetachFromWallKey: 306
 --- !u!114 &1599790400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,8 +217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerRb: {fileID: 3094698470019778996}
   PlayerMove: {fileID: 3094698470019778994}
-  DashModifier: 10
-  DashTime: 0.5
+  DashModifier: 30
+  DashTime: 1
   Grounded: 0
   CanDash: 1
 --- !u!114 &1008402102
@@ -333,7 +336,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2.0549264
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3094698471136308693
@@ -363,8 +366,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3094698471136308693}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35399997, z: 0.45700002}
-  m_LocalScale: {x: 0.61, y: -0.37, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0.35399997, z: 0.465}
+  m_LocalScale: {x: 0.61, y: 0.39, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3094698471139110115}
