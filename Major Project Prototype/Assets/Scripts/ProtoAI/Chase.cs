@@ -17,16 +17,18 @@ public class Chase : Action
     {
         #region Chase Logic
         // check distance to target
-        if (Vector3.SqrMagnitude(transform.position - Target.Value.position) < 0.1f)
+        if (Vector3.SqrMagnitude(transform.position - Target.Value.position) > 10f)
+        {
+            // move to target location
+            transform.position = Vector3.MoveTowards(transform.position, Target.Value.position, MoveSpeed * Time.deltaTime);
+
+            // look at the target
+            transform.LookAt(Target.Value);
+
             return TaskStatus.Success;
+        }
 
-        // move to target location
-        transform.position = Vector3.MoveTowards(transform.position, Target.Value.position, MoveSpeed * Time.deltaTime);
-
-        // look at the target
-        transform.LookAt(Target.Value);
-
-        return TaskStatus.Running;
+        return TaskStatus.Failure;
         #endregion
     }
     #endregion

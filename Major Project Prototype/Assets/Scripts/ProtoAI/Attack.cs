@@ -19,8 +19,10 @@ public class Attack : Action
     [Tooltip("Delay between bursts")]
     float fireDelay;
     public float ReloadTime;
-    [SerializeField]
-    float attackRange;
+    
+    public float AttackRange;
+
+    public LayerMask Enemy;
 
     public int CurrentAmmo;
     public int MaxAmmo;
@@ -45,18 +47,22 @@ public class Attack : Action
 
     public override TaskStatus OnUpdate()
     {
-        inAttackRange = Physics.CheckSphere(transform.position, attackRange);
+        inAttackRange = Physics.CheckSphere(transform.position, AttackRange, Enemy);
 
         if (inAttackRange)
         {
             canShoot = true;
             Shoot();
+
+            Reload();
             return TaskStatus.Success;
         }
-
-        Reload();
-
-        return TaskStatus.Failure;
+        else
+        {
+            Debug.Log("Attack failed");
+            return TaskStatus.Failure;
+        }
+        
     }
 
     /// <summary>
