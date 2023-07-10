@@ -169,7 +169,7 @@ MonoBehaviour:
     m_Bits: 8
   velocity: {x: 0, y: 0, z: 0}
   MoveSpeed: 10
-  JumpForce: 5
+  JumpForce: 7
   JumpCount: 2
   Grounded: 0
   JumpKey: 32

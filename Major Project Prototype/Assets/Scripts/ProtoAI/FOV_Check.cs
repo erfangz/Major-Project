@@ -18,6 +18,7 @@ public class FOV_Check : Conditional
     private Transform[] targetCollection;
 
     public float FOV;
+    public float SightRange;
     #endregion
 
     #region Methods
@@ -61,7 +62,7 @@ public class FOV_Check : Conditional
     {
         Vector3 direction = Target.position - transform.position;
 
-        return Vector3.Angle(direction, transform.forward) < fov;
+        return Vector3.Angle(direction, transform.forward) < fov && Vector3.Distance(transform.position, Target.position) <= SightRange;
     }
     #endregion
 }

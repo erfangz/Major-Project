@@ -17,7 +17,7 @@ public class AI_IdleBehaviour : Action
         {
             Idle();
         }
-        return TaskStatus.Running;
+        return TaskStatus.Success;
     }
 
     void Idle()

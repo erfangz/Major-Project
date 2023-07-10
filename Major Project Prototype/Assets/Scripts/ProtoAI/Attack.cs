@@ -19,7 +19,7 @@ public class Attack : Action
     [Tooltip("Delay between bursts")]
     float fireDelay;
     public float ReloadTime;
-    
+
     public float AttackRange;
 
     public LayerMask Enemy;
@@ -47,6 +47,8 @@ public class Attack : Action
 
     public override TaskStatus OnUpdate()
     {
+        Reload();
+
         inAttackRange = Physics.CheckSphere(transform.position, AttackRange, Enemy);
 
         if (inAttackRange)
@@ -54,7 +56,6 @@ public class Attack : Action
             canShoot = true;
             Shoot();
 
-            Reload();
             return TaskStatus.Success;
         }
         else
@@ -62,7 +63,6 @@ public class Attack : Action
             Debug.Log("Attack failed");
             return TaskStatus.Failure;
         }
-        
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ public class Attack : Action
     /// </summary>
 	void Reload()
     {
-        if (CurrentAmmo == 0)
+        if (CurrentAmmo <= 0)
         {
             // play reload animation
             StartCoroutine(Reloading());
@@ -93,6 +93,10 @@ public class Attack : Action
     }
 
     #region Enumerators
+    /// <summary>
+    /// Fires weapon for set amount of time
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator BurstFire()
     {
 
@@ -100,12 +104,20 @@ public class Attack : Action
         canShoot = false;
     }
 
+    /// <summary>
+    /// Delay between next attack instance
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DelayFire()
     {
         yield return new WaitForSeconds(fireDelay);
         canShoot = true;
     }
 
+    /// <summary>
+    /// Reloads weapon
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Reloading()
     {
         canShoot = false;
