@@ -758,7 +758,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.37204742, y: 0.0000000319424, z: -0.00000001280318, w: 0.9282137}
+  m_LocalRotation: {x: 0.37204742, y: -0.0000000319424, z: 0.00000001280318, w: 0.9282137}
   m_LocalPosition: {x: 1.72, y: 5.153, z: -2.8400002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -820,6 +820,7 @@ MonoBehaviour:
   Cam1: {fileID: 615854260}
   Cam2: {fileID: 1671527799}
   CamMode: 0
+  Weapon: {fileID: 1712280200}
 --- !u!1 &989169708
 GameObject:
   m_ObjectHideFlags: 3
@@ -1703,6 +1704,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1712280200 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 978537023, guid: 107e7fdbb9cb7c34f8afce23503ba539, type: 3}
+  m_PrefabInstance: {fileID: 3094698470211985574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140962ea426b8224baac7b2265b8cec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1750123356
 GameObject:
   m_ObjectHideFlags: 3
@@ -1850,7 +1862,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778110981}
-  m_LocalRotation: {x: 0.31810817, y: -3e-45, z: -7e-45, w: 0.94805443}
+  m_LocalRotation: {x: 0.31810817, y: -1e-45, z: -0, w: 0.94805443}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1928,7 +1940,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806587185}
-  m_LocalRotation: {x: 0.37204742, y: 0.000000015971194, z: -0.0000000064015877, w: 0.9282138}
+  m_LocalRotation: {x: 0.37204742, y: -0.000000015971203, z: 0.0000000064015904, w: 0.9282138}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2027,6 +2039,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 978537023, guid: 107e7fdbb9cb7c34f8afce23503ba539, type: 3}
+      propertyPath: ThirdPersonCam
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 3094698470019778985, guid: 107e7fdbb9cb7c34f8afce23503ba539, type: 3}
       propertyPath: m_Name
       value: Player
