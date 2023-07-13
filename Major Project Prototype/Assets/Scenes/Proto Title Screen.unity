@@ -1926,6 +1926,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 726034094}
   returnButton: {fileID: 1248403401}
+  newGameScreen: {fileID: 0}
+  continueGameScreen: {fileID: 0}
   optionsScreen: {fileID: 1451712823}
   quitGamePopUp: {fileID: 1981201734}
 --- !u!4 &1367885750

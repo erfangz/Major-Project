@@ -14,10 +14,10 @@ public class MenuManager : MonoBehaviour
     private GameObject returnButton;
 
     [Header("Main Menu Sub Menus")]
-    //[SerializeField]
-    //private GameObject newGameScreen;
-    //[SerializeField]
-    //private GameObject continueGameScreen;
+    [SerializeField]
+    private GameObject newGameScreen;
+    [SerializeField]
+    private GameObject continueGameScreen;
     [SerializeField]
     private GameObject optionsScreen;
     [SerializeField]
@@ -69,8 +69,8 @@ public class MenuManager : MonoBehaviour
     public void Return()
     {
         // disable all other menus
-        //continueGameScreen.SetActive(false);
-        //newGameScreen.SetActive(false);
+        continueGameScreen.SetActive(false);
+        newGameScreen.SetActive(false);
         optionsScreen.SetActive(false);
         quitGamePopUp.SetActive(false);
 
