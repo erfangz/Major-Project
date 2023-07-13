@@ -20,6 +20,8 @@ public class DashBehaviour : MonoBehaviour
 
     public bool Grounded;
     public bool CanDash = true;
+
+    public KeyCode DashKey = KeyCode.LeftShift;
     #endregion
 
     #region Methods
@@ -28,7 +30,12 @@ public class DashBehaviour : MonoBehaviour
         // Groundcheck
         Grounded = PlayerMove.Grounded;
 
+    }
+
+    private void Update()
+    {
         DashControl();
+        
     }
 
     /// <summary>
@@ -56,7 +63,7 @@ public class DashBehaviour : MonoBehaviour
     void DashControl()
     {
         // Dash Input
-        if (Input.GetKeyDown(KeyCode.LeftShift) && CanDash)
+        if (Input.GetKeyDown(DashKey) && CanDash)
         {
             Dash();
             CanDash = false;

@@ -32,6 +32,8 @@ public class PlayerCamMove : MonoBehaviour
     public GameObject Cam2;
 
     public CameraMode CamMode;
+
+    public WeaponTemplate Weapon;
     #endregion
 
     #region Camera States
@@ -56,6 +58,13 @@ public class PlayerCamMove : MonoBehaviour
             CamSwitch(CameraMode.TRAVERSE);  
         if (Input.GetKeyDown(KeyCode.Alpha2))
             CamSwitch(CameraMode.COMBAT);
+
+        // switch to combat cam when shooting weapon
+        if (Weapon.Shooting)
+        {
+            CamMode = CameraMode.COMBAT;
+            CombatBehaviour();
+        }
 
         // camera behaviour
         if (CamMode == CameraMode.TRAVERSE)
