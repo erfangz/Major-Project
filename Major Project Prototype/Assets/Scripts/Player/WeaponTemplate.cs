@@ -13,6 +13,7 @@ public class WeaponTemplate : MonoBehaviour
     [BoxGroup("Stats")]
     public int MagSize, ShotsPerSecond;
 
+    [SerializeField]
     int remainingShots, firedShots;
 
     public bool Automatic;
@@ -128,7 +129,7 @@ public class WeaponTemplate : MonoBehaviour
         remainingShots--;
         firedShots++;
 
-        Invoke("ResetShot", FireDelay);
+        Invoke("ResetShot", TimeBetweenShots);
 
         // shoots as many bullets per button tap as set in firedshots variable
         if (firedShots < ShotsPerSecond && remainingShots > 0)
