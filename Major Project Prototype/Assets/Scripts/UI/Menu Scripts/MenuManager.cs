@@ -24,11 +24,6 @@ public class MenuManager : MonoBehaviour
     private GameObject quitGamePopUp;
     #endregion
 
-    private void Start()
-    {
-        DontDestroyOnLoad(this);
-    }
-
     #region Button Methods
     // functions open the respective menu while disabling the main menu
 
@@ -69,8 +64,8 @@ public class MenuManager : MonoBehaviour
     public void Return()
     {
         // disable all other menus
-        continueGameScreen.SetActive(false);
-        newGameScreen.SetActive(false);
+        //continueGameScreen.SetActive(false);
+        //newGameScreen.SetActive(false);
         optionsScreen.SetActive(false);
         quitGamePopUp.SetActive(false);
 
