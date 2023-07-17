@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Proto Title Screen.unity
     guid: c03840383efe33c47849a0fb0da17320
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Proto Hub Area.unity
     guid: bb5341fb0fe61ce4c8140de2bea1d829
+  - enabled: 1
+    path: Assets/Scenes/Base.unity
+    guid: a0ad21cda7f35584597ae6abd7726e16
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
