@@ -26,9 +26,6 @@ public class Chase : Action
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(Target.Value.position.x + StoppingPoint, Target.Value.position.y, Target.Value.position.z + StoppingPoint)
                 , MoveSpeed * Time.deltaTime);
 
-            // look at the target
-            transform.LookAt(Target.Value);
-
             return TaskStatus.Success;
         }
 
