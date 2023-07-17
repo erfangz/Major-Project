@@ -14,20 +14,15 @@ public class MenuManager : MonoBehaviour
     private GameObject returnButton;
 
     [Header("Main Menu Sub Menus")]
-    //[SerializeField]
-    //private GameObject newGameScreen;
-    //[SerializeField]
-    //private GameObject continueGameScreen;
+    [SerializeField]
+    private GameObject newGameScreen;
+    [SerializeField]
+    private GameObject continueGameScreen;
     [SerializeField]
     private GameObject optionsScreen;
     [SerializeField]
     private GameObject quitGamePopUp;
     #endregion
-
-    private void Start()
-    {
-        DontDestroyOnLoad(this);
-    }
 
     #region Button Methods
     // functions open the respective menu while disabling the main menu

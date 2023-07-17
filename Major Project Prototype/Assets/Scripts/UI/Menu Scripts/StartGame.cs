@@ -22,7 +22,7 @@ public class StartGame : MonoBehaviour
     public void NewGameStart()
     {
         // without existing save file: simply start the game from beginning
-        SceneManager.LoadSceneAsync("");
+        SceneManager.LoadSceneAsync(1);
 
         // with existing safe file: prompt player about existing save file, get confirmation whether new game should be started or not
     }
