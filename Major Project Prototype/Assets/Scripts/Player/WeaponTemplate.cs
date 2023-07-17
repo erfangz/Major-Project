@@ -11,10 +11,7 @@ public class WeaponTemplate : MonoBehaviour
     [BoxGroup("Stats")]
     public float TimeBetweenShots, Spread, Range, ReloadTime, FireDelay, Force;
     [BoxGroup("Stats")]
-    public int MagSize, ShotsPerSecond;
-
-    [SerializeField]
-    int remainingShots, firedShots;
+    public int MagSize, ShotsPerSecond, RemainingShots, FiredShots;
 
     public bool Automatic;
 
@@ -26,8 +23,6 @@ public class WeaponTemplate : MonoBehaviour
     public RaycastHit Hit;
     [BoxGroup("References")]
     public Ray FiringRay;
-    //[BoxGroup("References")]
-    //public LayerMask Enemy;
     [BoxGroup("References")]
     public Transform BulletSpawn;
     [BoxGroup("References")]
@@ -49,7 +44,7 @@ public class WeaponTemplate : MonoBehaviour
 
     private void Awake()
     {
-        remainingShots = MagSize;
+        RemainingShots = MagSize;
         canShoot = true;
     }
 
@@ -66,15 +61,14 @@ public class WeaponTemplate : MonoBehaviour
         else Shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         // Reload
-        if (Input.GetKeyDown(KeyCode.R) && remainingShots < MagSize && !reloading)
+        if (Input.GetKeyDown(KeyCode.R) && RemainingShots < MagSize && !reloading)
             Reload();
 
         // Shoot
-        if (canShoot && Shooting && !reloading && remainingShots > 0)
+        if (canShoot && Shooting && !reloading && RemainingShots > 0)
         {
             // amount of shots fired per single tap
-            //firedShots = ShotsPerSecond;
-            firedShots = 0;
+            FiredShots = 0;
             Shoot();
         }
     }
@@ -83,23 +77,13 @@ public class WeaponTemplate : MonoBehaviour
     {
         canShoot = false;
 
-        #region old code
-        // Raycast
-        //FiringRay = new Ray(ThirdPersonCam.transform.position, direction);
-        //if(Physics.Raycast(FiringRay, out Hit, Range, Enemy))
-        //{
-        //    // get the damage calculation from other gameobject and execute function
-        //    if (Hit.collider.CompareTag("Enemy"))
-        //        Hit.collider.GetComponent<AI_Health>().TakeHit(); // temporary, replace with proper function later
-        //}
-        #endregion
-
         FiringRay = ThirdPersonCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
 
         Vector3 targetpoint;
         if (Physics.Raycast(FiringRay, out Hit))
             targetpoint = Hit.point;
+
         // shooting in the air, get a random point far away from players position
         else targetpoint = FiringRay.GetPoint(100);
 
@@ -126,13 +110,13 @@ public class WeaponTemplate : MonoBehaviour
         // muzzle flash
         #endregion
 
-        remainingShots--;
-        firedShots++;
+        RemainingShots--;
+        FiredShots++;
 
         Invoke("ResetShot", TimeBetweenShots);
 
         // shoots as many bullets per button tap as set in firedshots variable
-        if (firedShots < ShotsPerSecond && remainingShots > 0)
+        if (FiredShots < ShotsPerSecond && RemainingShots > 0)
             Invoke("Shoot", FireDelay);
     }
 
@@ -155,7 +139,7 @@ public class WeaponTemplate : MonoBehaviour
 
     public void Reloaded()
     {
-        remainingShots = MagSize;
+        RemainingShots = MagSize;
         reloading = false;
     }
     #endregion
