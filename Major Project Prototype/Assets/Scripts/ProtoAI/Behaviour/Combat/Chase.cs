@@ -10,6 +10,9 @@ public class Chase : Action
     #region References
     public SharedTransform Target;
     public float MoveSpeed;
+    public float StoppingPoint;
+
+    public FOV_Check FOV;
     #endregion
 
     #region Methods
@@ -17,10 +20,11 @@ public class Chase : Action
     {
         #region Chase Logic
         // check distance to target
-        if (Vector3.SqrMagnitude(transform.position - Target.Value.position) > 10f)
+        if (FOV.InSight(Target.Value, FOV.FOV))
         {
             // move to target location
-            transform.position = Vector3.MoveTowards(transform.position, Target.Value.position, MoveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Target.Value.position.x + StoppingPoint, Target.Value.position.y, Target.Value.position.z + StoppingPoint)
+                , MoveSpeed * Time.deltaTime);
 
             // look at the target
             transform.LookAt(Target.Value);

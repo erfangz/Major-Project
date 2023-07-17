@@ -10,17 +10,18 @@ using TooltipAttribute = UnityEngine.TooltipAttribute;
 public class Attack : Action
 {
     #region Variables
-    [Tooltip("Fired bullets per second")]
-    public float FireRate;
-    [SerializeField]
-    [Tooltip("Duration of burst fire")]
-    float burstDuration;
-    [SerializeField]
-    [Tooltip("Delay between bursts")]
-    float fireDelay;
-    public float ReloadTime;
+    //[Tooltip("Fired bullets per second")]
+    //public float FireRate;
+    //[SerializeField]
+    //[Tooltip("Duration of burst fire")]
+    //float burstDuration;
+    //[SerializeField]
+    //[Tooltip("Delay between bursts")]
+    //float fireDelay;
+    //public float ReloadTime;
 
     public float AttackRange;
+    public SharedFloat AwarenessRange;
 
     public LayerMask Enemy;
 
@@ -37,94 +38,108 @@ public class Attack : Action
     public SharedTransform Target;
     public GameObject Bullet;
     public Transform BulletSpawn;
+
+    public WeaponTemplate Weapon;
     #endregion
 
     #region Methods
-    public override void OnAwake()
-    {
-        CurrentAmmo = MaxAmmo;
-    }
+    //public override void OnAwake()
+    //{
+    //    MaxAmmo = Weapon.MagSize;
+    //}
 
-    public override TaskStatus OnUpdate()
-    {
-        Reload();
+    #region old code
+    //public override TaskStatus OnUpdate()
+    //{
+    //    Reload();
 
-        inAttackRange = Physics.CheckSphere(transform.position, AttackRange, Enemy);
+    //    inAttackRange = Physics.CheckSphere(transform.position, AttackRange, Enemy);
 
-        if (inAttackRange)
-        {
-            canShoot = true;
-            Shoot();
+    //    if (inAttackRange)
+    //    {
+    //        canShoot = true;
+    //        Shoot();
 
-            return TaskStatus.Success;
-        }
-        else
-        {
-            Debug.Log("Attack failed");
-            return TaskStatus.Failure;
-        }
-    }
+    //        return TaskStatus.Success;
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Attack failed");
+    //        return TaskStatus.Failure;
+    //    }
+    //}
 
     /// <summary>
     /// Shoots the equipped weapon
     /// </summary>
-	void Shoot()
-    {
-        if (canShoot)
-            StartCoroutine(BurstFire());
+    //void Shoot()
+    //   {
+    //       if (canShoot)
+    //           StartCoroutine(BurstFire());
 
-        if (!canShoot)
-        {
-            StopCoroutine(BurstFire());
-            StartCoroutine(DelayFire());
-        }
-    }
+    //       if (!canShoot)
+    //       {
+    //           StopCoroutine(BurstFire());
+    //           StartCoroutine(DelayFire());
+    //       }
+    //   }
 
     /// <summary>
     /// Reloads the weapon on empty ammo
     /// </summary>
-	void Reload()
-    {
-        if (CurrentAmmo <= 0)
-        {
-            // play reload animation
-            StartCoroutine(Reloading());
-        }
-    }
+    //void Reload()
+    //   {
+    //       if (CurrentAmmo <= 0)
+    //       {
+    //           // play reload animation
+    //           StartCoroutine(Reloading());
+    //       }
+    //   }
 
     #region Enumerators
     /// <summary>
     /// Fires weapon for set amount of time
     /// </summary>
     /// <returns></returns>
-    private IEnumerator BurstFire()
-    {
+    //private IEnumerator BurstFire()
+    //{
 
-        yield return new WaitForSeconds(burstDuration);
-        canShoot = false;
-    }
+    //    yield return new WaitForSeconds(burstDuration);
+    //    canShoot = false;
+    //}
 
     /// <summary>
     /// Delay between next attack instance
     /// </summary>
     /// <returns></returns>
-    private IEnumerator DelayFire()
-    {
-        yield return new WaitForSeconds(fireDelay);
-        canShoot = true;
-    }
+    //private IEnumerator DelayFire()
+    //{
+    //    yield return new WaitForSeconds(fireDelay);
+    //    canShoot = true;
+    //}
 
     /// <summary>
     /// Reloads weapon
     /// </summary>
     /// <returns></returns>
-    private IEnumerator Reloading()
-    {
-        canShoot = false;
-        yield return new WaitForSeconds(ReloadTime);
-        CurrentAmmo = MaxAmmo;
-        canShoot = true;
-    }
+    //private IEnumerator Reloading()
+    //{
+    //    canShoot = false;
+    //    yield return new WaitForSeconds(ReloadTime);
+    //    CurrentAmmo = MaxAmmo;
+    //    canShoot = true;
+    //}
     #endregion
+    #endregion
+
+    public override TaskStatus OnUpdate()
+    {
+        // look at the target
+        transform.LookAt(Target.Value);
+
+        return TaskStatus.Success;
+
+        return TaskStatus.Failure;
+    }
     #endregion
 }
