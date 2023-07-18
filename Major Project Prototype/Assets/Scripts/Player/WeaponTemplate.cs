@@ -5,18 +5,20 @@ using NaughtyAttributes;
 
 // Script based on: https://www.youtube.com/watch?v=bqNW08Tac0Y
 
+/// <summary>
+/// Template for creation of different kind of Gun Types
+/// </summary>
 public class WeaponTemplate : MonoBehaviour
 {
     #region Variables
     [BoxGroup("Stats")]
-    public float TimeBetweenShots, Spread, Range, ReloadTime, FireDelay, Force;
+    public float TimeBetweenShots, Spread, ReloadTime, FireDelay, Force;
     [BoxGroup("Stats")]
     public int MagSize, ShotsPerSecond, RemainingShots, FiredShots;
 
     public bool Automatic;
 
-    [SerializeField]
-    bool reloading, canShoot;
+    public bool Reloading, CanShoot;
     public bool Shooting;
 
     [BoxGroup("References")]
@@ -45,7 +47,7 @@ public class WeaponTemplate : MonoBehaviour
     private void Awake()
     {
         RemainingShots = MagSize;
-        canShoot = true;
+        CanShoot = true;
     }
 
     /// <summary>
@@ -61,11 +63,11 @@ public class WeaponTemplate : MonoBehaviour
         else Shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         // Reload
-        if (Input.GetKeyDown(KeyCode.R) && RemainingShots < MagSize && !reloading)
+        if (Input.GetKeyDown(KeyCode.R) && RemainingShots < MagSize && !Reloading)
             Reload();
 
         // Shoot
-        if (canShoot && Shooting && !reloading && RemainingShots > 0)
+        if (CanShoot && Shooting && !Reloading && RemainingShots > 0)
         {
             // amount of shots fired per single tap
             FiredShots = 0;
@@ -75,10 +77,9 @@ public class WeaponTemplate : MonoBehaviour
 
     public void Shoot()
     {
-        canShoot = false;
+        CanShoot = false;
 
         FiringRay = ThirdPersonCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-
 
         Vector3 targetpoint;
         if (Physics.Raycast(FiringRay, out Hit))
@@ -122,7 +123,7 @@ public class WeaponTemplate : MonoBehaviour
 
     public void ResetShot()
     {
-        canShoot = true;
+        CanShoot = true;
     }
 
     /// <summary>
@@ -130,7 +131,7 @@ public class WeaponTemplate : MonoBehaviour
     /// </summary>
     public void Reload()
     {
-        reloading = true;
+        Reloading = true;
 
         // play reload animation
 
@@ -140,7 +141,7 @@ public class WeaponTemplate : MonoBehaviour
     public void Reloaded()
     {
         RemainingShots = MagSize;
-        reloading = false;
+        Reloading = false;
     }
     #endregion
 }

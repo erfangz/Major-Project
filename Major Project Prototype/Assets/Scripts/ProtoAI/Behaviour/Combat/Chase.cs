@@ -22,6 +22,9 @@ public class Chase : Action
         // check distance to target
         if (FOV.InSight(Target.Value, FOV.FOV))
         {
+            // look at the target
+            transform.LookAt(Target.Value);
+
             // move to target location
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(Target.Value.position.x + StoppingPoint, Target.Value.position.y, Target.Value.position.z + StoppingPoint)
                 , MoveSpeed * Time.deltaTime);

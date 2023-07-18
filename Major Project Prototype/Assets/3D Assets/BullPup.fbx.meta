@@ -3,16 +3,11 @@ guid: 31aa78e91a500624b89779e8161d8fde
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ARMag
-    second: {fileID: 2100000, guid: ef9e138640fe4ff4999debb07f4b46cc, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
-    materialSearch: 1
+    materialSearch: 2
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4

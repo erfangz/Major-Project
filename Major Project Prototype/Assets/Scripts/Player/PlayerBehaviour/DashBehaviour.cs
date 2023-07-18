@@ -21,21 +21,24 @@ public class DashBehaviour : MonoBehaviour
     public bool Grounded;
     public bool CanDash = true;
 
-    public KeyCode DashKey = KeyCode.LeftShift;
+    public KeyCode DashKey;
     #endregion
 
     #region Methods
-    void FixedUpdate()
+    //void FixedUpdate()
+    //{
+    //    // Groundcheck
+    //    Grounded = PlayerMove.Grounded;
+
+    //    DashControl();
+    //}
+
+    private void Update()
     {
         // Groundcheck
         Grounded = PlayerMove.Grounded;
 
-    }
-
-    private void Update()
-    {
         DashControl();
-        
     }
 
     /// <summary>

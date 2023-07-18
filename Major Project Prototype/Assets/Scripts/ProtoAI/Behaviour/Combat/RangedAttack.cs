@@ -7,7 +7,7 @@ using TooltipAttribute = UnityEngine.TooltipAttribute;
 /// <summary>
 /// AI Behaviour during combat
 /// </summary>
-public class Attack : Action
+public class RangedAttack : Action
 {
     #region Variables
     //[Tooltip("Fired bullets per second")]
@@ -43,17 +43,17 @@ public class Attack : Action
     #endregion
 
     #region Methods
-    //public override void OnAwake()
-    //{
-    //    MaxAmmo = Weapon.MagSize;
-    //}
+    public override void OnAwake()
+    {
+        //MaxAmmo = Weapon.MagSize;
+        //CurrentAmmo = MaxAmmo;
+    }
 
     #region old code
     //public override TaskStatus OnUpdate()
     //{
     //    Reload();
 
-    //    inAttackRange = Physics.CheckSphere(transform.position, AttackRange, Enemy);
 
     //    if (inAttackRange)
     //    {
@@ -134,10 +134,19 @@ public class Attack : Action
 
     public override TaskStatus OnUpdate()
     {
+        canShoot = Weapon.CanShoot;
+
         // look at the target
         transform.LookAt(Target.Value);
 
-        return TaskStatus.Success;
+        inAttackRange = Physics.CheckSphere(transform.position, AttackRange, Enemy);
+        
+        if (inAttackRange)
+        {
+            Weapon.Shooting = true;
+            Weapon.Shoot();
+            return TaskStatus.Success;
+        }
 
         return TaskStatus.Failure;
     }
