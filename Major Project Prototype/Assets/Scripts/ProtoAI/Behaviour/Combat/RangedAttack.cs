@@ -36,8 +36,6 @@ public class RangedAttack : Action
 
     #region References
     public SharedTransform Target;
-    public GameObject Bullet;
-    public Transform BulletSpawn;
 
     public WeaponTemplate Weapon;
     #endregion
@@ -47,6 +45,7 @@ public class RangedAttack : Action
     {
         //MaxAmmo = Weapon.MagSize;
         //CurrentAmmo = MaxAmmo;
+        Weapon.FiringRay = new Ray(transform.position, Vector3.forward);
     }
 
     #region old code
@@ -143,12 +142,19 @@ public class RangedAttack : Action
         
         if (inAttackRange)
         {
-            Weapon.Shooting = true;
-            Weapon.Shoot();
+            Attack();
             return TaskStatus.Success;
         }
 
         return TaskStatus.Failure;
+    }
+
+    void Attack()
+    {
+        //Weapon.Shooting = true;
+        //Weapon.Shoot();
+
+        Debug.Log("Fire");
     }
     #endregion
 }

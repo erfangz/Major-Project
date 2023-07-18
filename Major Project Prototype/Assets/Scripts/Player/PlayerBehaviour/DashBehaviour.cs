@@ -50,7 +50,8 @@ public class DashBehaviour : MonoBehaviour
         var x = Input.GetAxisRaw("Horizontal");
         var z = Input.GetAxisRaw("Vertical");
 
-        Vector3 dashDirection = PlayerMove.Orientation.TransformDirection(x, PlayerRb.velocity.y, z);
+        Vector3 dashDirection = transform.TransformDirection(x, PlayerRb.velocity.y, z);
+        //Vector3 dashDirection = PlayerMove.Orientation.TransformDirection(x, PlayerRb.velocity.y, z);
 
         if (dashDirection == Vector3.zero)
             return;
